@@ -29,7 +29,7 @@ pipeline {
     }
 	post {
 		always {
-			discordSend description: "#${BUILD_NUMBER}: ${currentBuild.currentResult}", footer: "by: xxx", link: env.BUILD_URL, result: currentBuild.currentResult, unstable: false, title: JOB_NAME, webhookURL: "${DISCORD_WEBHOOK}"
+			discordSend description: "#${BUILD_NUMBER}: ${currentBuild.currentResult}", footer: "by: ${env.BUILD_USER}", link: env.BUILD_URL, result: currentBuild.currentResult, unstable: false, title: JOB_NAME, webhookURL: "${DISCORD_WEBHOOK}"
 		}
 	}
 }

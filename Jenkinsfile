@@ -7,6 +7,7 @@ pipeline {
     }
     environment { 
         CI = 'true'
+		DISCORD_WEBHOOK = credentials('DISCORD_WEBHOOK')
     }
     stages {
         stage('Build') {
@@ -27,4 +28,9 @@ pipeline {
             }
         }
     }
+	post {
+		always {
+			discordSend description: 'Jenkins Pipeline Build', footer: 'Footer Text', link: env.BUILD_URL, result: currentBuild.currentResult, unstable: false, title: JOB_NAME, webhookURL: $DISCORD_WEBHOOK
+		}
+	}
 }

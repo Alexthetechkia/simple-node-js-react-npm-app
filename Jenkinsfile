@@ -7,7 +7,6 @@ pipeline {
     }
     environment { 
         CI = 'true'
-		DISCORD_WEBHOOK = credentials('DISCORD_WEBHOOK')
     }
     stages {
         stage('Build') {
